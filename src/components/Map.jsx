@@ -26,7 +26,7 @@ function MapArea() {
             setMapTypeId(kakao.maps.MapTypeId.TRAFFIC)
           }}
         >
-          교통정보 보기 test
+          교통정보 보기
         </button>
     </>
   );
