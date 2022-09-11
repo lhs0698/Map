@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useState } from "react";
 import { MapTypeId, Map } from "react-kakao-maps-sdk";
 const { kakao } = window;
 
@@ -28,6 +28,9 @@ function MapArea() {
         >
           교통정보 보기
         </button>
+        <button onClick={() => {
+          setMapTypeId(false)
+        }}>효과 지우기</button>
     </>
   );
 }
