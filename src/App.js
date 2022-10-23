@@ -1,11 +1,10 @@
 import './App.css';
-import MapArea from './components/MapArea';
-
+import View from './components/View';
 
 function App() {
   return (
     <>
-      <MapArea/>
+      <View></View>
     </>
   );
 }
