@@ -1,10 +1,11 @@
-import './App.css';
-import View from './components/View';
+import React from "react";
+
+import Maps from "./components/Map";
 
 function App() {
   return (
     <>
-      <View></View>
+      <Maps></Maps>
     </>
   );
 }

@@ -1,10 +1,9 @@
-import { useState } from "react";
+import React, {useState} from "react"
 import {Map, MapTypeId, MapMarker, Roadview} from "react-kakao-maps-sdk";
-
-
 
 function View(){
   const [isError, setIsError] = useState(false)
+
   const [center, setCenter] = useState({
     lat: 33.450422139819736,
     lng: 126.5709139924533,
@@ -61,7 +60,7 @@ function View(){
         style={{
           // 지도의 크기
           width: isError ? "0" : "50%",
-          height: "600px",
+          height: "500px",
         }}
         onErrorGetNearestPanoId={() => setIsError(true)}
       ></Roadview>
