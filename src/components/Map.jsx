@@ -14,14 +14,13 @@ function Maps() {
     center: { lat: 37.44510253603426, lng: 126.80013603123734 }, // 지도의 초기 위치
     isPanto: true, // 지도 위치 변경시 panto를 이용할지(부드럽게 이동)
   });
-  
-  const [addressList, setAddressList] = useState()
+  const [addressList, setAddressList] = useState([]);
+
 
   // 주소 입력후 검색 클릭 시 원하는 주소로 이동
   const SearchMap = () => {
     // 주소-좌표간 변환 서비스 객체를 생성한다.
     const geocoder = new kakao.maps.services.Geocoder();
-    
     // result = 결과 목록(array), status = 응답 코드 
     let callback = function (result, status) {
       // 정상적으로 검색이 완료됐으면 
@@ -34,17 +33,15 @@ function Maps() {
         });
         // 주소 이동 button 틀릭 시 경도 위도 가져오기
         const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-        console.log(coords)
+        // console.log(coords)
         setPosition({
           ...position,
           lat : coords.Ma,
           lng : coords.La,
         })
         // 관련 주소 목록 가져오기
-        const addressList = result;
-        console.log(addressList)
-        // console.log(addressList[0].address_name)
-        
+        const List = result;
+        setAddressList((state) => [...state, ...List]);
       } else {
         // 등록된 주소가 없을 시 alert창으로 알림
         alert("등록된 주소가 없습니다. 다시 입력해주세요")
@@ -56,7 +53,7 @@ function Maps() {
   const handleSearchAddress = (e) => {
     SetSearchAddress(e.target.value);
   };
-
+  
   return (
     <>
       <Map
@@ -95,7 +92,16 @@ function Maps() {
         <button onClick={SearchMap} style={{margin:'10px'}}>주소로 이동</button>
       </div>
       <div>
-        ㅇㅇ{addressList}
+        {
+          addressList.map((eachAddress,index) => {
+            return (
+              // jsx에서 map함수 사용 시 key를 넣어줘야하는데 이 값은 고유한 값이어야한다. 고유한 값이 없다면 함수를 사용할 때 설정하는 콜백 함수의 두번째 파라미터 index를 key로 설정한다
+              <div key={index}>
+                <span>{eachAddress.address_name}</span>
+              </div>
+            )
+          })
+        }
       </div>
     </>
   );
