@@ -1,7 +1,7 @@
 import React, {useState} from "react"
 import {Map, MapTypeId, MapMarker, Roadview} from "react-kakao-maps-sdk";
 
-function View(){
+function RoadView(){
   const [isError, setIsError] = useState(false)
 
   const [center, setCenter] = useState({
@@ -68,4 +68,4 @@ function View(){
   )
 }
 
-export default View;
+export default RoadView;
