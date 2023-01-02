@@ -8,7 +8,7 @@ const Container = styled.div`
 
 function Weather() {
   const [temp, setTemp] = useState();
-  const [weather, setWeather] = useState();
+  // const [weather, setWeather] = useState();
 
   useEffect(() => {
     fetch(
@@ -21,7 +21,7 @@ function Weather() {
         const temps = temp.toFixed([1]); // toFixed는 소수점 반올림 시 사용한다.
         const weather = data.weather[0].main;
         setTemp(temps); //온도
-        setWeather(weather); //날씨
+        // setWeather(weather); //날씨
       });
   });
   return (
