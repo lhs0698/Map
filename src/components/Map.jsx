@@ -61,7 +61,8 @@ const SearchBtn = styled.button`
 
 function Maps() {
   const [mapTypeId, setMapTypeId] = useState(); // 지도 타입
-  const [draggable, setDraggable] = useState(true); // 지도 드래그 이동 
+  const [draggable, setDraggable] = useState(true); // 지도 드래그 이동
+  const [zoomable, setZoomable] = useState(true) // 지도 확대 축소  
   const [position, setPosition] = useState({
     lat: null,
     lng: null,
@@ -117,12 +118,14 @@ function Maps() {
     }
   }
 
-  // 지도 이동 막기
+  // 지도 이동 및 확대 축소 막기
   const draggBtn = () => {
     if(!draggable) {
       setDraggable(true)
+      setZoomable(true)
     } else {
       setDraggable(false)
+      setZoomable(false)
     }
   }
 
@@ -137,6 +140,7 @@ function Maps() {
         level={4} // 지도의 확대 레벨
         isPanto={state.isPanto}
         draggable={draggable}
+        zoomable={zoomable}
       >
         {mapTypeId && <MapTypeId type={mapTypeId} />}
         {position && <MapMarker position={position} />}
