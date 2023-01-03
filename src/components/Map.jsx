@@ -1,7 +1,12 @@
 // const { kakao } = window;
 import React, { useState } from "react";
 import { MapTypeId, Map, MapMarker } from "react-kakao-maps-sdk";
-import { IoCarSportSharp, IoSearch, IoLockClosed, IoLockOpen }  from "react-icons/io5";
+import {
+  IoCarSportSharp,
+  IoSearch,
+  IoLockClosed,
+  IoLockOpen,
+} from "react-icons/io5";
 import styled from "styled-components";
 
 import Weather from "./Weather";
@@ -13,7 +18,7 @@ const Container = styled.div`
   z-index: 999;
   top: 2%;
   left: 86%;
-`
+`;
 const SearchContainer = styled.div`
   width: 100%;
   display: flex;
@@ -22,26 +27,26 @@ const SearchContainer = styled.div`
   position: absolute;
   z-index: 999;
   top: 10px;
-`
+`;
 const ButtonNav = styled.div`
   width: 180px;
   height: 60px;
-  background-color: #F5F5F5;
+  background-color: #f5f5f5;
   border-radius: 25px;
   border: 2px solid;
   display: flex;
   justify-content: center;
   align-items: center;
-`
+`;
 const EventButton = styled.button`
   cursor: pointer;
   width: 48px;
   height: 48px;
   border-radius: 50%;
   border: 2px solid;
-  background-color: #FFFFFF;
+  background-color: #ffffff;
   margin: 10px;
-`
+`;
 const SearchInput = styled.input`
   width: 300px;
   height: 30px;
@@ -50,19 +55,25 @@ const SearchInput = styled.input`
   display: flex;
   justify-content: center;
   text-align: center;
-`
+  &:hover {
+    color: #00ff00;
+  }
+`;
 const SearchBtn = styled.button`
   width: 60px;
   height: 38px;
   border: 2px solid;
   border-radius: 40px;
-  background-color: #FFFFFF;
-`
+  background-color: #ffffff;
+  &:hover {
+    color: #00ff00;
+  }
+`;
 
 function Maps() {
   const [mapTypeId, setMapTypeId] = useState(); // 지도 타입
   const [draggable, setDraggable] = useState(true); // 지도 드래그 이동
-  const [zoomable, setZoomable] = useState(true) // 지도 확대 축소  
+  const [zoomable, setZoomable] = useState(true); // 지도 확대 축소
   const [position, setPosition] = useState({
     lat: null,
     lng: null,
@@ -110,24 +121,24 @@ function Maps() {
   };
 
   // 교통상황 버튼
-  const traffifBtn =  () => {
-    if(!mapTypeId) {
-      setMapTypeId(kakao.maps.MapTypeId.TRAFFIC)
+  const traffifBtn = () => {
+    if (!mapTypeId) {
+      setMapTypeId(kakao.maps.MapTypeId.TRAFFIC);
     } else {
-      setMapTypeId(false)
+      setMapTypeId(false);
     }
-  }
+  };
 
   // 지도 이동 및 확대 축소 막기
   const draggBtn = () => {
-    if(!draggable) {
-      setDraggable(true)
-      setZoomable(true)
+    if (!draggable) {
+      setDraggable(true);
+      setZoomable(true);
     } else {
-      setDraggable(false)
-      setZoomable(false)
+      setDraggable(false);
+      setZoomable(false);
     }
-  }
+  };
 
   return (
     <>
@@ -144,25 +155,35 @@ function Maps() {
       >
         {mapTypeId && <MapTypeId type={mapTypeId} />}
         {position && <MapMarker position={position} />}
-        
+
         <Container>
           <ButtonNav>
             <EventButton onClick={traffifBtn}>
-              {mapTypeId ? (<IoCarSportSharp size="26" color="#FF4500" />) : (<IoCarSportSharp size="26" />)}
+              {mapTypeId ? (
+                <IoCarSportSharp size="26" color="#FF4500" />
+              ) : (
+                <IoCarSportSharp size="26" />
+              )}
             </EventButton>
             <EventButton onClick={draggBtn}>
-            { draggable ? (<IoLockOpen size="26"/>) : (<IoLockClosed size="25" color="#FF4500"/>)}
+              {draggable ? (
+                <IoLockOpen size="26" />
+              ) : (
+                <IoLockClosed size="25" color="#FF4500" />
+              )}
             </EventButton>
           </ButtonNav>
         </Container>
 
         <SearchContainer>
-          <SearchInput onChange={handleSearchAddress} placeholder="주소를 입력하세요" />
+          <SearchInput
+            onChange={handleSearchAddress}
+            placeholder="주소를 입력하세요"
+          />
           <SearchBtn onClick={SearchMap} style={{ margin: "5px" }}>
-          <IoSearch size="26" />
+            <IoSearch size="26" />
           </SearchBtn>
-        </SearchContainer>    
-        
+        </SearchContainer>
 
         <div>
           {addressList.map((eachAddress, index) => {
