@@ -19,7 +19,7 @@ function Weather() {
         // console.log(data);
         const temp = data.main.temp;
         const temps = temp.toFixed([1]); // toFixed는 소수점 반올림 시 사용한다.
-        const weather = data.weather[0].main;
+        // const weather = data.weather[0].main;
         setTemp(temps); //온도
         // setWeather(weather); //날씨
       });

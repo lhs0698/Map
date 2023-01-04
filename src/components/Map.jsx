@@ -20,13 +20,14 @@ const Container = styled.div`
   left: 86%;
 `;
 const SearchContainer = styled.div`
-  width: 100%;
+  width: 400px;
   display: flex;
   justify-content: center;
   align-items: center;
   position: absolute;
   z-index: 999;
   top: 10px;
+  left: 38%;
 `;
 const ButtonNav = styled.div`
   width: 180px;
@@ -55,9 +56,6 @@ const SearchInput = styled.input`
   display: flex;
   justify-content: center;
   text-align: center;
-  &:hover {
-    color: #00ff00;
-  }
 `;
 const SearchBtn = styled.button`
   width: 60px;
@@ -107,8 +105,9 @@ function Maps() {
           lng: coords.La,
         });
         // 관련 주소 목록 가져오기
-        const List = result;
-        setAddressList((state) => [...state, ...List]);
+        const list = result;
+        // setAddressList((state) => [...state, ...List]);
+        setAddressList(list);
       } else {
         alert("등록된 주소가 없습니다. 다시 입력해주세요");
       }
