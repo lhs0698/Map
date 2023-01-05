@@ -10,6 +10,9 @@ import {
 import styled from "styled-components";
 
 import Weather from "./Weather";
+import { useRecoilState } from "recoil";
+import { addressListState } from "../atom";
+
 
 const Container = styled.div`
   width: 100%;
@@ -81,7 +84,8 @@ function Maps() {
     center: { lat: 37.44510253603426, lng: 126.80013603123734 }, // 지도의 초기 위치
     isPanto: true, // 지도 위치 변경시 panto를 이용할지(부드럽게 이동)
   });
-  const [addressList, setAddressList] = useState([]); //주소 검색
+  // const [addressList, setAddressList] = useState([]); //주소 검색
+  const [addressList, setAddressList] = useRecoilState(addressListState);
 
   // 주소 입력후 검색 클릭 시 원하는 주소로 이동
   const SearchMap = () => {
@@ -199,7 +203,5 @@ function Maps() {
     </>
   );
 }
-
-// 날씨 데이터도 가져와 보기
 
 export default Maps;
