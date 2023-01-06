@@ -13,7 +13,6 @@ import Weather from "./Weather";
 import { useRecoilState } from "recoil";
 import { addressListState } from "../atom";
 
-
 const Container = styled.div`
   width: 100%;
   display: flex;
