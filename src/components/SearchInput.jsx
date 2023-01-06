@@ -3,6 +3,7 @@ import styled from "styled-components";
 import { IoSearch } from "react-icons/io5";
 import { useSetRecoilState } from "recoil";
 import { mapPosState } from "../store/mapPos";
+import { mkPosState } from "../store/mkPos";
 
 const SearchContainer = styled.div`
   width: 400px;
