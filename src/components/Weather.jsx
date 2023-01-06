@@ -7,6 +7,7 @@ const Container = styled.div`
 `;
 
 function Weather() {
+  console.log("날씨 컴포넌트 생성");
   const [temp, setTemp] = useState();
   // const [weather, setWeather] = useState();
 
@@ -23,12 +24,9 @@ function Weather() {
         setTemp(temps); //온도
         // setWeather(weather); //날씨
       });
-  });
-  return (
-    <Container>
-      날씨 :{temp}도
-    </Container>
-  );
+  }, []); //마운트(처음 렌더링) 됬을때만
+
+  return <Container>날씨 :{temp}도</Container>;
 }
 
-export default Weather;
+export default React.memo(Weather);
