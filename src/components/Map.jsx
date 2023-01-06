@@ -65,8 +65,12 @@ const SearchBtn = styled.button`
   border: 2px solid;
   border-radius: 40px;
   background-color: #ffffff;
-  &:hover {
-    color: #00ff00;
+  
+  .SearchIcon {
+    font-size: 26px;
+    &:hover {
+      color: #FF4500;
+    }
   }
 `;
 
@@ -183,7 +187,7 @@ function Maps() {
             placeholder="주소를 입력하세요"
           />
           <SearchBtn onClick={SearchMap} style={{ margin: "5px" }}>
-            <IoSearch size="26" />
+            <IoSearch className="SearchIcon"/>
           </SearchBtn>
         </SearchContainer>
 
