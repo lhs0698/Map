@@ -5,7 +5,7 @@ import { IoCarSportSharp, IoLockClosed, IoLockOpen } from "react-icons/io5";
 import styled from "styled-components";
 
 import SearchInput from "./SearchInput";
-import Weather from "./Weather";
+// import Weather from "./Weather";
 import { useRecoilValue } from "recoil";
 import { mapPosState } from "../store/mapPos";
 
@@ -47,7 +47,7 @@ function Maps() {
     lat: null,
     lng: null,
   }); // 마커 생성
-  const [searchAddress, SetSearchAddress] = useState("");
+  // const [searchAddress, SetSearchAddress] = useState("");
 
   const mapPos = useRecoilValue(mapPosState);
   // const [addressList, setAddressList] = useState([]); //주소 검색
@@ -61,7 +61,6 @@ function Maps() {
       setMapTypeId(false);
     }
   };
-
   // 지도 이동 및 확대 축소 막기
   const draggBtn = () => {
     if (!draggable) {
@@ -79,7 +78,7 @@ function Maps() {
         center={{ lat: mapPos.lat, lng: mapPos.lng }}
         style={{
           width: "100%",
-          height: "90vh",
+          height: "100vh",
         }}
         level={4} // 지도의 확대 레벨
         isPanto={true}
@@ -87,8 +86,8 @@ function Maps() {
         zoomable={zoomable}
       >
         {mapTypeId && <MapTypeId type={mapTypeId} />}
-        {position && <MapMarker position={position} />}
-
+        
+        
         <Container>
           <ButtonNav>
             <EventButton onClick={traffifBtn}>
@@ -118,9 +117,10 @@ function Maps() {
             );
           })}
         </div> */}
+      <SearchInput />  
       </Map>
       {/* <Weather /> */}
-      <SearchInput />
+      
     </>
   );
 }

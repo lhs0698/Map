@@ -1,5 +1,6 @@
 import { atom } from "recoil";
 
+// map 기본 위치 지정
 export const mapPosState = atom({
   key: "mapPos",
   default: {
