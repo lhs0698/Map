@@ -119,7 +119,7 @@ function Maps() {
           })}
         </div> */}
       </Map>
-      <Weather />
+      {/* <Weather /> */}
       <SearchInput />
     </>
   );

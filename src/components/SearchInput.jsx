@@ -50,6 +50,12 @@ const SearchInput = () => {
     setSearchAddress(e.target.value);
   };
 
+  const EnterKey = (e) => {
+    if (e.key === 'Enter') {
+      SearchMap();
+    }
+  };
+
   // 주소 입력후 검색 클릭 시 원하는 주소로 이동
   const SearchMap = () => {
     // 주소-좌표간 변환 서비스 객체를 생성한다.
@@ -83,10 +89,13 @@ const SearchInput = () => {
     geocoder.addressSearch(`${searchAddress}`, callback);
   };
 
+  
+
   return (
     <SearchContainer>
       <Input
         onChange={handleSearchAddress}
+        onKeyDown={EnterKey}
         value={searchAddress}
         placeholder="주소를 입력하세요"
       />
