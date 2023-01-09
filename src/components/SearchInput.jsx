@@ -47,14 +47,19 @@ const SearchInput = () => {
   const [searchAddress, setSearchAddress] = useState("");
   const setMapPosState = useSetRecoilState(mapPosState);
 
-  // const [position, setPosition] = useState({}); // 마커 생성
-  // const setMkState = useRecoilValue(mkPosState)
-  const [position, setPosition] = useRecoilState(mkPosState)
-  // const setPosState = useSetRecoilState(mkPosState);
+  // 1.
+  // const [position, setPosition] = useState(); // 마커 생성
+  // const setMkState = useSetRecoilState(mkPosState)
+  
+  // 2.
+  const [position, setPosition] = useRecoilState(mkPosState);
 
   const handleSearchAddress = (e) => {
     setSearchAddress(e.target.value);
   };
+  
+  const [addressList, setAddressList] = useState([]); //주소 검색
+  // console.log(addressList)
 
   // const EnterKey = (e) => {
   //   if (e.key === 'Enter') {
@@ -72,6 +77,7 @@ const SearchInput = () => {
       if (status === kakao.maps.services.Status.OK) {
         const newSearch = result[0];
         console.log(result);
+
         // 검색이 완료 됐으면 지도의 위치를 setState를 이용해 지도 위치 변경
         const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
         // console.log(coords)
@@ -88,14 +94,13 @@ const SearchInput = () => {
         // 관련 주소 목록 가져오기
         const list = result;
         // setAddressList((state) => [...state, ...List]);
-        // setSearchAddress(list);
+        setAddressList(list);
       } else {
         alert("등록된 주소가 없습니다. 다시 입력해주세요");
       }
     };
     geocoder.addressSearch(`${searchAddress}`, callback);
   };
-
   return (
     <>
       <SearchContainer>
@@ -110,6 +115,15 @@ const SearchInput = () => {
         </SearchBtn>
         {position && <MapMarker position={position} />}
       </SearchContainer>
+      <div>
+        {addressList.map((eachAddress, index) => {
+          return (
+            <div key={index}>
+              <span>{eachAddress.address_name}</span>
+            </div>
+          )
+        })}
+      </div>
     </>
   );
 };
