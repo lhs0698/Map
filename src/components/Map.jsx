@@ -106,7 +106,7 @@ function Maps() {
 
         <SearchInput />
       </Map>
-      <Weather />
+      {/* <Weather /> */}
     </>
   );
 }
