@@ -83,7 +83,6 @@ function Maps() {
         draggable={draggable}
         zoomable={zoomable}
       >
-        
         {mapTypeId && <MapTypeId type={mapTypeId} />}
 
         <Container>
@@ -107,7 +106,7 @@ function Maps() {
 
         <SearchInput />
       </Map>
-      {/* <Weather /> */}
+      <Weather />
     </>
   );
 }
