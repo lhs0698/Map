@@ -5,6 +5,7 @@ import { useSetRecoilState, useRecoilState } from "recoil";
 import { mapPosState } from "../store/mapPos";
 import { mkPosState } from "../store/mkPos";
 import { MapMarker } from "react-kakao-maps-sdk";
+import { useEffect } from "react";
 
 const SearchContainer = styled.div`
   width: 400px;
@@ -50,16 +51,10 @@ const SearchInput = () => {
   // 1.
   // const [position, setPosition] = useState(); // 마커 생성
   // const setMkState = useSetRecoilState(mkPosState)
-  
+
   // 2.
   const [position, setPosition] = useRecoilState(mkPosState);
-
-  const handleSearchAddress = (e) => {
-    setSearchAddress(e.target.value);
-  };
-  
   const [addressList, setAddressList] = useState([]); //주소 검색
-  // console.log(addressList)
 
   // const EnterKey = (e) => {
   //   if (e.key === 'Enter') {
@@ -96,16 +91,28 @@ const SearchInput = () => {
         // setAddressList((state) => [...state, ...List]);
         setAddressList(list);
       } else {
-        alert("등록된 주소가 없습니다. 다시 입력해주세요");
+        // alert("등록된 주소가 없습니다. 다시 입력해주세요");
       }
     };
+    // console.log(inputValue.length);
+
     geocoder.addressSearch(`${searchAddress}`, callback);
   };
+
+  useEffect(() => {
+    setSearchAddress();
+    SearchMap();
+  }, [searchAddress]);
+
   return (
     <>
       <SearchContainer>
         <Input
-          onChange={handleSearchAddress}
+          onChange={(e) => {
+            if (e.target.value.length >= 3) {
+              setSearchAddress(e.target.value);
+            }
+          }}
           // onKeyDown={EnterKey}
           value={searchAddress}
           placeholder="주소를 입력하세요"
@@ -121,7 +128,7 @@ const SearchInput = () => {
             <div key={index}>
               <span>{eachAddress.address_name}</span>
             </div>
-          )
+          );
         })}
       </div>
     </>
