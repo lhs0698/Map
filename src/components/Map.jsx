@@ -76,7 +76,7 @@ function Maps() {
         center={{ lat: mapPos.lat, lng: mapPos.lng }}
         style={{
           width: "100%",
-          height: "80vh",
+          height: "100vh",
         }}
         level={4} // 지도의 확대 레벨
         isPanto={true}

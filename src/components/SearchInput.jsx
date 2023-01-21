@@ -42,25 +42,40 @@ const SearchBtn = styled.button`
   }
 `;
 
+const ListTable = styled.div`
+  width: 296px;
+  /* border: 1px solid; */
+  /* border-radius: 10px; */
+  margin: 5px;
+  z-index: 999;
+  position: absolute;
+  top: 7%;
+  left: 38.8%;
+`;
+const List = styled.div`
+  background-color: #ffffff;
+  padding: 5px;
+  border: 1px solid;
+  border-radius: 10px;
+  margin: 2px;
+`;
+const AddList = styled.span`
+  display: flex;
+  justify-content: center;
+  font-size: 15px;
+  font-weight: 500;
+`;
+
 const SearchInput = () => {
   console.log("검색 컴포넌트 생성");
 
-  const [searchAddress, setSearchAddress] = useState("");
+  const [searchAddress, setSearchAddress] = useState();
   const setMapPosState = useSetRecoilState(mapPosState);
 
-  // 1.
-  // const [position, setPosition] = useState(); // 마커 생성
-  // const setMkState = useSetRecoilState(mkPosState)
-
-  // 2.
   const [position, setPosition] = useRecoilState(mkPosState);
   const [addressList, setAddressList] = useState([]); //주소 검색
 
-  // const EnterKey = (e) => {
-  //   if (e.key === 'Enter') {
-  //     SearchMap();
-  //   }
-  // };
+
 
   // 주소 입력후 검색 클릭 시 원하는 주소로 이동
   const SearchMap = () => {
@@ -100,7 +115,7 @@ const SearchInput = () => {
   };
 
   useEffect(() => {
-    setSearchAddress();
+    setSearchAddress(); 
     SearchMap();
   }, [searchAddress]);
 
@@ -117,20 +132,20 @@ const SearchInput = () => {
           value={searchAddress}
           placeholder="주소를 입력하세요"
         />
-        <SearchBtn onClick={SearchMap} style={{ margin: "5px" }}>
+        <SearchBtn onClick={SearchMap()} style={{ margin: "5px" }}>
           <IoSearch className="SearchIcon" />
         </SearchBtn>
         {position && <MapMarker position={position} />}
       </SearchContainer>
-      <div>
+      <ListTable>
         {addressList.map((eachAddress, index) => {
           return (
-            <div key={index}>
-              <span>{eachAddress.address_name}</span>
-            </div>
+            <List key={index}>
+              <AddList>{eachAddress.address_name}</AddList>
+            </List>
           );
         })}
-      </div>
+      </ListTable>
     </>
   );
 };
