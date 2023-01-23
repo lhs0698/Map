@@ -1,11 +1,11 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import styled from "styled-components";
 import { IoSearch } from "react-icons/io5";
 import { useSetRecoilState, useRecoilState } from "recoil";
 import { mapPosState } from "../store/mapPos";
 import { mkPosState } from "../store/mkPos";
 import { MapMarker } from "react-kakao-maps-sdk";
-import { useEffect } from "react";
+
 
 const SearchContainer = styled.div`
   width: 400px;
@@ -44,22 +44,28 @@ const SearchBtn = styled.button`
 
 const ListTable = styled.div`
   width: 296px;
-  /* border: 1px solid; */
-  /* border-radius: 10px; */
   margin: 5px;
   z-index: 999;
   position: absolute;
   top: 7%;
   left: 38.8%;
+
+  #box:active {
+    border: 1px solid ;
+	  text-shadow: 0px 0px 10px #9900FF;
+    box-shadow: 1px 2px 4px gray;
+  }
 `;
-const List = styled.div`
+const ListBtn = styled.button`
   background-color: #ffffff;
+  width: 300px;
   padding: 5px;
   border: 1px solid;
   border-radius: 10px;
   margin: 2px;
+  cursor: pointer;
 `;
-const AddList = styled.span`
+const AddList = styled.div`
   display: flex;
   justify-content: center;
   font-size: 15px;
@@ -74,8 +80,6 @@ const SearchInput = () => {
 
   const [position, setPosition] = useRecoilState(mkPosState);
   const [addressList, setAddressList] = useState([]); //주소 검색
-
-
 
   // 주소 입력후 검색 클릭 시 원하는 주소로 이동
   const SearchMap = () => {
@@ -140,9 +144,9 @@ const SearchInput = () => {
       <ListTable>
         {addressList.map((eachAddress, index) => {
           return (
-            <List key={index}>
+            <ListBtn key={index} id="box">
               <AddList>{eachAddress.address_name}</AddList>
-            </List>
+            </ListBtn>
           );
         })}
       </ListTable>

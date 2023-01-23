@@ -44,10 +44,10 @@ function Maps() {
   const [mapTypeId, setMapTypeId] = useState(); // 지도 타입
   const [draggable, setDraggable] = useState(true); // 지도 드래그 이동
   const [zoomable, setZoomable] = useState(true); // 지도 확대 축소
-  const [position, setPosition] = useState({
-    lat: null,
-    lng: null,
-  }); // 마커 생성
+  // const [position, setPosition] = useState({
+  //   lat: null,
+  //   lng: null,
+  // }); // 마커 생성
 
   const mapPos = useRecoilValue(mapPosState);
 
@@ -110,5 +110,5 @@ function Maps() {
     </>
   );
 }
-// test
+
 export default Maps;
