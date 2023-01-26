@@ -6,7 +6,6 @@ import { mapPosState } from "../store/mapPos";
 import { mkPosState } from "../store/mkPos";
 import { MapMarker } from "react-kakao-maps-sdk";
 
-
 const SearchContainer = styled.div`
   width: 400px;
   display: flex;
@@ -51,8 +50,8 @@ const ListTable = styled.div`
   left: 38.8%;
 
   #box:active {
-    border: 1px solid ;
-	  text-shadow: 0px 0px 10px #9900FF;
+    border: 1px solid;
+    text-shadow: 0px 0px 10px #9900ff;
     box-shadow: 1px 2px 4px gray;
   }
 `;
@@ -84,42 +83,41 @@ const SearchInput = () => {
   // 주소 입력후 검색 클릭 시 원하는 주소로 이동
   const SearchMap = () => {
     // 주소-좌표간 변환 서비스 객체를 생성한다.
+
     const geocoder = new kakao.maps.services.Geocoder();
     // result = 결과 목록(array), status = 응답 코드
     let callback = function (result, status) {
       // 정상적으로 검색이 완료됐으면
       if (status === kakao.maps.services.Status.OK) {
-        const newSearch = result[0];
-        console.log(result);
-
         // 검색이 완료 됐으면 지도의 위치를 setState를 이용해 지도 위치 변경
         const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-        // console.log(coords)
-        setMapPosState({
-          lat: newSearch.y,
-          lng: newSearch.x,
-        });
+        console.log(result);
         // 주소 이동 button 틀릭 시 경도 위도 가져오기
         setPosition({
           ...position,
           lat: coords.Ma,
           lng: coords.La,
         });
+
+        const newSearch = result[0];
+        setMapPosState({
+          lat: newSearch.y,
+          lng: newSearch.x,
+        });
         // 관련 주소 목록 가져오기
         const list = result;
-        // setAddressList((state) => [...state, ...List]);
+        // setAddressList((state) => [...state, ...list]);
         setAddressList(list);
       } else {
         // alert("등록된 주소가 없습니다. 다시 입력해주세요");
       }
     };
     // console.log(inputValue.length);
-
     geocoder.addressSearch(`${searchAddress}`, callback);
   };
 
   useEffect(() => {
-    setSearchAddress(); 
+    setSearchAddress();
     SearchMap();
   }, [searchAddress]);
 
@@ -144,7 +142,13 @@ const SearchInput = () => {
       <ListTable>
         {addressList.map((eachAddress, index) => {
           return (
-            <ListBtn key={index} id="box">
+            <ListBtn
+              key={index}
+              id="box"
+              onClick={() => {
+                console.log("다시");
+              }}
+            >
               <AddList>{eachAddress.address_name}</AddList>
             </ListBtn>
           );
