@@ -88,10 +88,13 @@ const SearchInput = () => {
     // result = 결과 목록(array), status = 응답 코드
     let callback = function (result, status) {
       // 정상적으로 검색이 완료됐으면
+
       if (status === kakao.maps.services.Status.OK) {
         // 검색이 완료 됐으면 지도의 위치를 setState를 이용해 지도 위치 변경
+
         const coords = new kakao.maps.LatLng(result[0].y, result[0].x);
-        console.log(result);
+        console.log(coords);
+        // console.log(result);
         // 주소 이동 button 틀릭 시 경도 위도 가져오기
         setPosition({
           ...position,
@@ -139,7 +142,7 @@ const SearchInput = () => {
         </SearchBtn>
         {position && <MapMarker position={position} />}
       </SearchContainer>
-      <ListTable>
+      {/* <ListTable>
         {addressList.map((eachAddress, index) => {
           return (
             <ListBtn
@@ -153,7 +156,7 @@ const SearchInput = () => {
             </ListBtn>
           );
         })}
-      </ListTable>
+      </ListTable> */}
     </>
   );
 };
