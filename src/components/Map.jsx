@@ -5,7 +5,6 @@ import { IoCarSportSharp, IoLockClosed, IoLockOpen } from "react-icons/io5";
 import styled from "styled-components";
 
 import SearchInput from "./SearchInput";
-// import Weather from "./Weather";
 
 import { useRecoilValue } from "recoil";
 import { mapPosState } from "../store/mapPos";
@@ -103,10 +102,8 @@ function Maps() {
             </EventButton>
           </ButtonNav>
         </Container>
-
         <SearchInput />
       </Map>
-      {/* <Weather /> */}
     </>
   );
 }
